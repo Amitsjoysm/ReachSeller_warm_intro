@@ -4,6 +4,9 @@ import * as SecureStore from 'expo-secure-store';
 
 const API_URL = Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || process.env.EXPO_PUBLIC_BACKEND_URL || 'http://localhost:8001';
 
+console.log('API_URL configured as:', API_URL);
+console.log('Full API baseURL:', `${API_URL}/api`);
+
 const api = axios.create({
   baseURL: `${API_URL}/api`,
   headers: {
