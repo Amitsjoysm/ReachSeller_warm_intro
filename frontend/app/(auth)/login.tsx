@@ -29,10 +29,15 @@ export default function LoginScreen() {
     }
 
     try {
+      console.log('Attempting login for:', email);
       await login(email.toLowerCase().trim(), password);
+      console.log('Login successful, redirecting...');
       router.replace('/(tabs)');
     } catch (err: any) {
-      Alert.alert('Login Failed', err.response?.data?.detail || 'Invalid credentials');
+      console.error('Login error:', err);
+      console.error('Error response:', err.response?.data);
+      const errorMessage = err.response?.data?.detail || err.message || 'Invalid credentials';
+      Alert.alert('Login Failed', errorMessage);
     }
   };
 
